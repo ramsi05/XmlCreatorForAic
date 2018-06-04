@@ -22,6 +22,35 @@ namespace XmlCreatorForAic
     {
         static void Main(string[] args)
         {
+            int defaultVal = 5;
+            int countEvents = defaultVal;
+            if (args.Count() > 0)
+            {
+                if (args.Count() == 1)
+                {
+                    try
+                    {
+                        countEvents = Int32.Parse(args.FirstOrDefault().ToString());
+                        if (countEvents < 1)
+                        {
+                            Console.WriteLine("Parameter has to be > 0! Value is set to " + defaultVal);
+                            countEvents = defaultVal;
+                        }
+                    } catch
+                    {
+                        Console.WriteLine("Parameter has to be a integer-value!");
+                        Console.Read();
+                        return;
+                    }
+                    
+                } else
+                {
+                    Console.WriteLine("False amount of parameters!" + Environment.NewLine + "Usage: XmlCreatorForAic [<numberOfNextEvents>]");
+                    Console.Read();
+                    return;
+                }
+            }
+            
             Console.WriteLine("Begin...");
             try
             {
@@ -30,7 +59,7 @@ namespace XmlCreatorForAic
                 doc.Load("../Input.xml");
 
                 var nodes = doc.GetElementsByTagName("InfoCenter");
-                IList<string> eventsAsString = DateStringBuilder.getDateStrings();
+                IList<string> eventsAsString = DateStringBuilder.getDateStrings(countEvents);
                 XmlElement page = doc.CreateElement("Page");
                 page.SetAttribute("Type", "Default");
                 XmlElement title = doc.CreateElement("Title");

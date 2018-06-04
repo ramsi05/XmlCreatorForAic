@@ -11,10 +11,10 @@ namespace XmlCreatorForAic
     {
 
         //get Events von Google cal and build strings
-        public static IList<string> getDateStrings()
+        public static IList<string> getDateStrings(int countEvents)
         {
             IList<string> eventsAsString = new List<string>();
-            IList<Event> events = GoogleCalConnect.getCalendarItems(5);
+            IList<Event> events = GoogleCalConnect.getCalendarItems(countEvents);
 
             foreach (Event calEvent in events)
             {
@@ -33,11 +33,11 @@ namespace XmlCreatorForAic
                 string myString;
                 if (wholeDay)
                 {
-                    myString = String.Format("{0:ddd} {1:dd.MM}\t{2}", date, date.Date, description);
+                    myString = String.Format("{0:ddd} {1:dd.MM} {2}", date, date.Date, description);
                 }
                 else
                 {
-                    myString = String.Format("{0:ddd} {1:dd.MM}\t{2,-40}{3:d2}:{4:d2}", date, date.Date, description, date.TimeOfDay.Hours, date.TimeOfDay.Minutes);
+                    myString = String.Format("{0:ddd} {1:dd.MM} {2} ({3:d2}:{4:d2})", date, date.Date, description, date.TimeOfDay.Hours, date.TimeOfDay.Minutes);
                 }
                 eventsAsString.Add(myString);
             }
