@@ -2,3 +2,7 @@
 **/bin
 **/obj
 /.vs
+Doku-de/*.png
+Doku-de/*.aux
+Doku-de/*.log
+Doku-de/*.out

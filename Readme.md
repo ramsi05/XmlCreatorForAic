@@ -11,7 +11,7 @@ In that folder save the 'Input.xml' with the pattern.
 In a subfolder are the files of this program.
 Also in the subfolder the 'client_secret.json' from google api is required***
 
-To compile the program the google referances are required.
+To compile the program the google references are required.
 To get them install them with NuGet Package Manager Console in Visual Studio:  
 PM> Install-Package Google.Apis.Calendar.v3
 

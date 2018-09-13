@@ -1,0 +1,139 @@
+%%%----------------------------------------------------------
+%%% Vorlage für Abgabe Programmierübung
+%%% erstellt am 16.09.2017
+%%% von Johannes Ramsebner
+%%%
+%%% Version 1.5
+%%% Letzte Änderung am 04.06.2018
+%%%----------------------------------------------------------
+
+\documentclass[a4paper,onecolumn,notitlepage,11pt,liststotoc,bibtotoc]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{scrpage2}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage[
+	colorlinks=true,
+	urlcolor=blue,
+	linkcolor=blue
+]{hyperref}
+
+\definecolor{middlegray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightgray}{rgb}{0.8,0.8,0.8}
+\definecolor{orange}{rgb}{0.8,0.3,0.3}
+\definecolor{yac}{rgb}{0.6,0.6,0.1}
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\ttfamily\color{orange},
+  stringstyle=\color{green}\ttfamily,
+  commentstyle=\color{middlegray}\ttfamily,
+  emph={square}, 
+  emphstyle=\color{blue}\texttt,
+  emph={[2]root,base},
+  emphstyle={[2]\color{yac}\texttt},
+  showstringspaces=false,
+  flexiblecolumns=false,
+  tabsize=2,
+  numbers=left,
+  numberstyle=\tiny,
+  numberblanklines=true,
+  stepnumber=1,
+  numbersep=10pt,
+  xleftmargin=15pt,
+  breaklines=true
+}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{10pt}
+
+%%% Kopf- und Fußzeile korrekt befüllen!!!
+\pagestyle{scrheadings}
+\ihead[]{Schnellanleitung XmlCreatorForAic}
+\chead[]{}
+\ohead[]{}
+\ifoot[]{Github: \url{https://github.com/ramsi05/XmlCreatorForAic}}
+\cfoot[]{}
+\ofoot[]{\arabic{page}}
+
+
+
+%%%----------------------------------------------------------
+\begin{document}
+
+%%%----------------------------------------------------------
+\section{Google Kalender anlegen}
+Falls nicht vorhanden muss ein Google-Account erstellt und im Kalender die Einträge erfasst werden. Kalendereinträge können auch mittels csv Import eingefügt werden (für weitere Infos siehe \url{https://support.google.com/calendar/answer/37118?hl=de})
+%
+\section{Kalender API aktivieren und credentials downloaden}
+\label{sec:cred}
+Im Google-Account anmelden und folgenden Link aufrufen:\\
+\url{https://developers.google.com/calendar/quickstart/dotnet}\\
+Unter "`Step 1: Turn on the Google Calendar API"' den Button klicken um die API zu aktivieren und ein File herunterzuladen, das dann die Verbindung zu dem Kalender herstellt. Dieses File ist im .json Format und kann mit einem Texteditor angesehen werden.
+Punkt C ist zu ignorieren. Stattdessen muss das File \texttt{client\_secret.json} benannt werden. Der Inhalt darf nicht verändert werden!
+\begin{center}
+  \includegraphics[scale=0.5]{Google1}
+\end{center}
+%
+\section{ZIP-File mit Programmdateien downloaden}
+Die letzte Version mit allen benötigten Files kann von diesem Link downgeloadet werden:\\
+\url{http://ff-ried.bplaced.net/download/XmlCreatorForAic.zip}\\
+Anschließend entpacken und im Unterverzeichnis "`XmlCreator"' die Datei \texttt{client\_secret.json} mit derjenigen aus Pkt.~\ref{sec:cred} ersetzen.
+%
+\section{Ausführen}
+Mit der Batch-Datei "`StartXmlCreator.bat"' kann das Programm gestartet werden. Hierbei kann in der Datei die Anzahl der angezeigten Termine definiert werden indem nach dem Aufruf \texttt{XmlCreatorForAic.exe} die Anzahl angegeben wird (z.B. \texttt{XmlCreatorForAic.exe 10}). Weiters ist eine Datei mit dem Namen \texttt{Input.xml} mit der Vorlage für die Anzeige erforderlich (Beispiel in der ZIP enthalten. Siehe auch das XSD der AIC Entwickler:\\ \url{http://www.alarm-info-center.at/services/infocenter.xsd}). An diese Vorlage wird im Outputfile eine neue Seite mit den Terminen angehängt.\\
+Nach Ausführung der .bat sollte eine Datei \texttt{Output.xml} und \texttt{log.txt} erzeugt worden sein. Ist die Datei \texttt{Output.xml} nicht vorhanden steht in der Datei \texttt{log.txt} die Fehlermeldung.
+Danach muss das AIC neu gestartet werden. Hierzu kann die Batchdatei "`KillAndStartAic.bat"' verwendet werden. Dazu muss nur mit einem Texteditor der Pfad zum AIC umgeschrieben (Standardmäßig "`C:\textbackslash AIC\textbackslash AlarmInfoCenter.exe"') und der Benutzer ersetzt (Standardmäßig "`Einsatzanzeige"') werden.
+%
+\section{Automatisierung}
+Um das Ganze zu automatisieren wenn die Anzeige 24/7 läuft kann dies mit Windows Boardmitteln automatisiert werden um z.B. einmal am Tag die Termine zu holen und das AIC neu zu starten.\\
+Dazu wird in der Systemsteuerung unter Verwaltung der Punkt Aufgabenplanung (Windows 7) gewählt und eine neue Aufgabe angelegt. Als Trigger wird der gewünschte Zeitpunkt eingestellt. Unter Aktion wird der Konsole die Batch-Datei übergeben. Dazu die Parameter wie folgt setzen:
+
+Aktion: Programm starten\\
+Programm: Link zur Windows-Konsole (hier am 64-Bit System) "`C:\textbackslash Windows\textbackslash SysWOW64\textbackslash cmd.exe"'\\
+Argumente: /c "'StartXmlCreator.bat"'\\
+Starten in: \emph{Verzeichnis indem die "`StartXmlCreator.bat"' liegt}
+\begin{center}
+  \includegraphics[scale=0.5]{Aufgabe1}
+\end{center}
+%%%----------------------------------------------------------
+\end{document}
+%%%----------------------------------------------------------
+
+
+%%%----------------------------------------------------------
+%%%Speicher für Sondersachen
+%%%----------------
+%%%----------------
+%%% Listing im Text:
+%%%----------------
+
+\begin{lstlisting}[language=C]
+//c-code
+\end{lstlisting}
+
+%%%-----------------
+%%% Anführungzeichen:
+%%%----------------
+
+\glqq Text\grqq{}
+
+%%%-----------------
+%%% Text in Maschinenschrift:
+%%%----------------
+
+\texttt{Text}
+
+%%%----------------
+%%% Einfügen von Bildern
+%%%----------------
+
+\begin{center}
+%  \includegraphics[width=110mm]{Testfall}
+  \includegraphics[scale=0.8]{Testfall}
+\end{center}
+
