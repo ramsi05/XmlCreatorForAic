@@ -1,3 +1,12 @@
+%%%----------------------------------------------------------
+%%% Vorlage für Abgabe Programmierübung
+%%% erstellt am 16.09.2017
+%%% von Johannes Ramsebner
+%%%
+%%% Version 1.5
+%%% Letzte Änderung am 04.06.2018
+%%%----------------------------------------------------------
+
 \documentclass[a4paper,onecolumn,notitlepage,11pt,liststotoc,bibtotoc]{scrartcl}
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
@@ -51,6 +60,8 @@
 \cfoot[]{}
 \ofoot[]{\arabic{page}}
 
+
+
 %%%----------------------------------------------------------
 \begin{document}
 
@@ -70,7 +81,7 @@ Punkt C ist zu ignorieren. Stattdessen muss das File \texttt{client\_secret.json
 %
 \section{ZIP-File mit Programmdateien downloaden}
 Die letzte Version mit allen benötigten Files kann von diesem Link downgeloadet werden:\\
-\url{http://ff-ried.bplaced.net/download/XmlCreatorForAic.zip}\\
+\url{https://github.com/ramsi05/XmlCreatorForAic/blob/master/zip/XmlCreatorForAic.zip}\\
 Anschließend entpacken und im Unterverzeichnis "`XmlCreator"' die Datei \texttt{client\_secret.json} mit derjenigen aus Pkt.~\ref{sec:cred} ersetzen.
 %
 \section{Ausführen}
@@ -91,3 +102,38 @@ Starten in: \emph{Verzeichnis indem die "`StartXmlCreator.bat"' liegt}
 \end{center}
 %%%----------------------------------------------------------
 \end{document}
+%%%----------------------------------------------------------
+
+
+%%%----------------------------------------------------------
+%%%Speicher für Sondersachen
+%%%----------------
+%%%----------------
+%%% Listing im Text:
+%%%----------------
+
+\begin{lstlisting}[language=C]
+//c-code
+\end{lstlisting}
+
+%%%-----------------
+%%% Anführungzeichen:
+%%%----------------
+
+\glqq Text\grqq{}
+
+%%%-----------------
+%%% Text in Maschinenschrift:
+%%%----------------
+
+\texttt{Text}
+
+%%%----------------
+%%% Einfügen von Bildern
+%%%----------------
+
+\begin{center}
+%  \includegraphics[width=110mm]{Testfall}
+  \includegraphics[scale=0.8]{Testfall}
+\end{center}
+
