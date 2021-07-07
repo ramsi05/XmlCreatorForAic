@@ -19,7 +19,7 @@ namespace XmlCreatorForAic
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/calendar-dotnet-quickstart.json
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
-        static string ApplicationName = "Google Calendar API .NET Quickstart";
+        static string ApplicationName = "XML Creator";
 
         public static IList<Event> getCalendarItems(int count)
         {
@@ -31,7 +31,7 @@ namespace XmlCreatorForAic
             {
                 string credPath = System.Environment.GetFolderPath(
                     System.Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/calendar-dotnet-quickstart.json");
+                credPath = Path.Combine(credPath, ".credentials/xml-creator.json");
 
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.FromStream(stream).Secrets,
