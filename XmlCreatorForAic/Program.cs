@@ -36,21 +36,23 @@ namespace XmlCreatorForAic
                             Console.WriteLine("Parameter has to be > 0! Value is set to " + defaultVal);
                             countEvents = defaultVal;
                         }
-                    } catch
+                    }
+                    catch
                     {
                         Console.WriteLine("Parameter has to be a integer-value!");
                         Console.Read();
                         return;
                     }
-                    
-                } else
+
+                }
+                else
                 {
                     Console.WriteLine("False amount of parameters!" + Environment.NewLine + "Usage: XmlCreatorForAic [<numberOfNextEvents>]");
                     Console.Read();
                     return;
                 }
             }
-            
+
             Console.WriteLine("Begin...");
             try
             {
@@ -80,9 +82,15 @@ namespace XmlCreatorForAic
                 Console.WriteLine("File 'Output.xml' was written.");
                 Console.WriteLine("Finished!");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine("Exception!" + Environment.NewLine + e.Message);
+                Console.WriteLine("Exception!" + Environment.NewLine + ex.Message);
+                if (System.Diagnostics.Debugger.IsAttached)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(ex.StackTrace);
+                }
+                
             }
             finally
             {

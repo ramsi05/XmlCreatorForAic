@@ -34,7 +34,7 @@ namespace XmlCreatorForAic
                 credPath = Path.Combine(credPath, ".credentials/calendar-dotnet-quickstart.json");
 
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
+                    GoogleClientSecrets.FromStream(stream).Secrets,
                     Scopes,
                     "user",
                     CancellationToken.None,
